@@ -8,9 +8,14 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "electron-is-dev": "^1.2.0",
+    "firebase": "^7.19.1",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^1.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
