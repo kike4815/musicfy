@@ -33,7 +33,20 @@ export default function RegsiterForm(props) {
     setFormError(errors);
 
     if (formOk) {
-      console.log("formulario Enviado");
+      setIsLoading(true);
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(formData.email, formData.password)
+        .then(() => {
+          console.log("Registro completado");
+        })
+        .catch(() => {
+          console.log("Error al registrarse");
+        })
+        .finally(() => {
+          setIsLoading(false);
+          setSelectedForm(null);
+        });
     }
   };
 
@@ -41,14 +54,14 @@ export default function RegsiterForm(props) {
     return {
       email: "",
       password: "",
-      username: ""
+      username: "",
     };
   }
 
-  const onChange = e => {
+  const onChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -110,7 +123,9 @@ export default function RegsiterForm(props) {
             <span className="error-text">Por favor, introduce un usuario</span>
           )}
         </Form.Field>
-        <Button type="submit">Continuar</Button>
+        <Button type="submit" loading={isLoading}>
+          Continuar
+        </Button>
       </Form>
       <div className="register-form__options">
         <p onClick={() => setSelectedForm(null)}>Volver</p>
