@@ -18,12 +18,14 @@ code {
   .Toastify__toast-container--top-center {
     width: 100%;
     top: 0;
-    left: 0;
     padding: 0;
     margin: 0;
 
     .Toastify__toast--succes {
       background-color: $background-primary;
+    }
+    .Toastify__toast--error {
+      background-color: $danger;
     }
   }
 }

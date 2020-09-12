@@ -15,7 +15,6 @@ export default function RegsiterForm(props) {
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = () => {
-    toast.success("Error....");
     setFormError({});
     let errors = {};
     let formOk = true;
@@ -40,7 +39,8 @@ export default function RegsiterForm(props) {
         .auth()
         .createUserWithEmailAndPassword(formData.email, formData.password)
         .then(() => {
-          console.log("Registro completado");
+          changeUserName();
+          emailVerification();
         })
         .catch(() => {
           toast.error("Error al registrarse");
@@ -69,6 +69,27 @@ export default function RegsiterForm(props) {
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
+  };
+
+  const changeUserName = () => {
+    firebase
+      .auth()
+      .currentUser.updateProfile({
+        displayName: formData.username,
+      })
+      .catch(() => console.log("Error al asignar el nombre de usuario"));
+  };
+
+  const emailVerification = () => {
+    firebase
+      .auth()
+      .currentUser.sendEmailVerification()
+      .then(() => {
+        toast.success("Se ha enviado un correo de verificación");
+      })
+      .catch(() => {
+        toast.error("Error al enviar el correo de verificación");
+      });
   };
 
   return (
