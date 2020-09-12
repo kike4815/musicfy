@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import firebase from "./utils/firebase";
 import "firebase/auth";
 import Auth from "./pages/Auth";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  firebase.auth().onAuthStateChanged(currentUser => {
+  firebase.auth().onAuthStateChanged((currentUser) => {
     if (!currentUser) {
       setUser(null);
     } else {
@@ -20,7 +21,22 @@ function App() {
     return null;
   }
 
-  return !user ? <Auth /> : <UserLogged />;
+  return (
+    <>
+      {!user ? <Auth /> : <UserLogged />}
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        rtl={false}
+        pauseOnHover={false}
+        closeOnClick
+        hideProgressBar
+        newestOnTop
+        pauseOnVisibilityChange
+        draggable
+      />
+    </>
+  );
 }
 
 function UserLogged() {
@@ -35,7 +51,7 @@ function UserLogged() {
         alignItems: "center",
         justifyContent: "center",
         flexDirection: "column",
-        height: "100vh"
+        height: "100vh",
       }}
     >
       <h1>Usuario Logeado</h1>

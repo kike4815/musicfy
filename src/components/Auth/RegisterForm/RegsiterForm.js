@@ -3,6 +3,7 @@ import { Form, Button, Icon, Input } from "semantic-ui-react";
 import { validateEmail } from "../../../utils/validation";
 import firebase from "../../../utils/firebase";
 import "firebase/auth";
+import { toast } from "react-toastify";
 
 import "./RegisterForm.scss";
 
@@ -14,6 +15,7 @@ export default function RegsiterForm(props) {
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = () => {
+    toast.success("Error....");
     setFormError({});
     let errors = {};
     let formOk = true;
@@ -41,7 +43,7 @@ export default function RegsiterForm(props) {
           console.log("Registro completado");
         })
         .catch(() => {
-          console.log("Error al registrarse");
+          toast.error("Error al registrarse");
         })
         .finally(() => {
           setIsLoading(false);
@@ -107,7 +109,7 @@ export default function RegsiterForm(props) {
           />
           {formError.password && (
             <span className="error-text">
-              Por favor, introduce un password de longitud igual o superior a 6
+              La contraseña debe ser de longitud igual o superior a 6
             </span>
           )}
         </Form.Field>
