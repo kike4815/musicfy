@@ -14,7 +14,7 @@ export default function LoginForm(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [formError, setFormError] = useState({});
-  const [userActive, setUserActive] = useState(false);
+  const [userActive, setUserActive] = useState(true);
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -45,7 +45,24 @@ export default function LoginForm(props) {
     setFormError(errors);
 
     if (formOk) {
-      console.log("logging correcto");
+      setIsLoading(true);
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(formData.email, formData.password)
+        .then((response) => {
+          setUser(response.user);
+          setUserActive(response.user.emailVerified);
+          if (!response.user.emailVerified) {
+            toast.warning("Para poder loggear antes debes verificar la cuenta");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          handleErrors(err.code);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
   };
 
@@ -66,7 +83,7 @@ export default function LoginForm(props) {
           toast.success("Se ha enviado el email de verificación");
         })
         .catch((error) => {
-          //Error
+          handleErrors(error.code);
         })
         .finally(() => {
           setIsLoading(false);
@@ -81,6 +98,25 @@ export default function LoginForm(props) {
         </p>
       </div>
     );
+  }
+
+  function handleErrors(code) {
+    switch (code) {
+      case "auth/wrong-password":
+        toast.warning("El usuario o contraseña son incorrectos");
+        break;
+      case "auth/too-many-requests":
+        toast.warning(
+          "has enviado demasiadas solicitudes de reenvio del email de confimarción en poco tiempo"
+        );
+        break;
+      case "auth/user-not-found": {
+        toast.warning("El usuario o contraseña son incorrectos");
+        break;
+      }
+      default:
+        break;
+    }
   }
 
   return (
@@ -126,8 +162,17 @@ export default function LoginForm(props) {
             </span>
           )}
         </Form.Field>
-        <Button type="submit">Iniciar sesión</Button>
+        <Button type="submit" loading={isLoading}>
+          Iniciar sesión
+        </Button>
       </Form>
+      {!userActive && (
+        <ButtonreSendEmailVerification
+          user={user}
+          setIsLoading={setIsLoading}
+          setUserActive={setUserActive}
+        />
+      )}
       <div className="login-form__options">
         <p onClick={() => setSelectedForm(null)}>Volver</p>
         <p>
