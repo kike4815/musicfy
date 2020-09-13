@@ -5,6 +5,7 @@ import Routes from "../../routes/Routes";
 import MenuLeft from "../../components/MenuLeft/MenuLeft";
 
 import "./LoggedLayout.scss";
+import TopBar from "../../components/TopBar";
 
 export default function LoggedLayout(props) {
   const { user } = props;
@@ -19,7 +20,7 @@ export default function LoggedLayout(props) {
             <MenuLeft user={user} />
           </Grid.Column>
           <Grid.Column className="content" width={13}>
-            <h2>TopBar</h2>
+            <TopBar user={user} />
             <Routes />
           </Grid.Column>
         </Grid.Row>

@@ -1,0 +1,19 @@
+@import "../../scss/index.scss";
+
+.log-out {
+  text-align: center;
+
+  .ui.button {
+    margin: 10px;
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+
+    &.accept:hover {
+      background-color: $primary-color-hover;
+    }
+    &.cancel:hover {
+      background-color: $danger;
+    }
+  }
+}
