@@ -10,7 +10,7 @@ export default function Routes() {
       <Route path="/" exact>
         <Home />
       </Route>
-      <Route path="/artistas" exact>
+      <Route path="/artists" exact>
         <h1> artistas</h1>
       </Route>
       <Route path="/settings" exact>
