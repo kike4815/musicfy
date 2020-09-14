@@ -21,7 +21,7 @@ export default function LoggedLayout(props) {
           </Grid.Column>
           <Grid.Column className="content" width={13}>
             <TopBar user={user} />
-            <Routes />
+            <Routes user={user} />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
