@@ -8,7 +8,7 @@ import "firebase/storage";
 import "firebase/auth";
 
 export default function UploadAvatar(props) {
-  const { user } = props;
+  const { user, setReloadApp } = props;
   const [avatarURL, setAvatarURL] = useState(user.photoURL);
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -35,8 +35,9 @@ export default function UploadAvatar(props) {
       .storage()
       .ref(`avatar/${user.uid}`)
       .getDownloadURL()
-      .then((response) => {
-        firebase.auth().currentUser.updateProfile({ photoURL: response });
+      .then(async (response) => {
+        await firebase.auth().currentUser.updateProfile({ photoURL: response });
+        setReloadApp((prevState) => !prevState);
       })
       .catch(() => {
         toast.error("Error al actualizar el avatar");

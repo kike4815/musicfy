@@ -8,7 +8,7 @@ import "./LoggedLayout.scss";
 import TopBar from "../../components/TopBar";
 
 export default function LoggedLayout(props) {
-  const { user } = props;
+  const { user, setReloadApp } = props;
   return (
     <Router>
       <Grid className="logged-layout">
@@ -21,7 +21,7 @@ export default function LoggedLayout(props) {
           </Grid.Column>
           <Grid.Column className="content" width={13}>
             <TopBar user={user} />
-            <Routes user={user} />
+            <Routes user={user} setReloadApp={setReloadApp} />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>

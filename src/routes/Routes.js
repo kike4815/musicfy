@@ -6,7 +6,7 @@ import Home from "../pages/Home";
 import Settings from "../pages/Settings";
 
 export default function Routes(props) {
-  const { user } = props;
+  const { user, setReloadApp } = props;
   return (
     <Switch>
       <Route path="/" exact>
@@ -16,7 +16,7 @@ export default function Routes(props) {
         <h1> artistas</h1>
       </Route>
       <Route path="/settings" exact>
-        <Settings user={user} />
+        <Settings user={user} setReloadApp={setReloadApp} />
       </Route>
     </Switch>
   );
