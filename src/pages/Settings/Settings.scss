@@ -35,7 +35,8 @@
       }
     }
   }
-  .user-email {
+  .user-email,
+  .user-password {
     display: flex !important;
     align-items: center;
     justify-content: space-between;
@@ -44,10 +45,5 @@
     h3 {
       margin: 0px;
     }
-  }
-}
-.ui.icon.input {
-  i {
-    color: $font-light;
   }
 }
