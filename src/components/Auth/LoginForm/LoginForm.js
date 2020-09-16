@@ -57,7 +57,6 @@ export default function LoginForm(props) {
           }
         })
         .catch((err) => {
-          console.log(err);
           handleErrors(err.code);
         })
         .finally(() => {
