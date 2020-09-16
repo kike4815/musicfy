@@ -35,4 +35,19 @@
       }
     }
   }
+  .user-email {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+
+    h3 {
+      margin: 0px;
+    }
+  }
+}
+.ui.icon.input {
+  i {
+    color: $font-light;
+  }
 }
