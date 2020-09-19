@@ -36,6 +36,11 @@ function MenuLeft(props) {
         setContentModal(<AddArtistForm setShowModal={setShowModal} />);
         setShowModal(true);
         break;
+      case "album":
+        setTitleModal("Nuevo Álbum");
+        setContentModal(<h2>Formulario nuevo album</h2>);
+        setShowModal(true);
+        break;
       case "song":
         setTitleModal("Nueva Canción");
         setContentModal(<h2>Formulario nueva canción</h2>);
@@ -77,6 +82,10 @@ function MenuLeft(props) {
             <Menu.Item onClick={() => handleModal("artist")}>
               <Icon name="plus square outline" />
               Nuevo Artista
+            </Menu.Item>
+            <Menu.Item onClick={() => handleModal("album")}>
+              <Icon name="plus square outline" />
+              Nuevo Álbum
             </Menu.Item>
             <Menu.Item onClick={() => handleModal("song")}>
               <Icon name="plus square outline" />

@@ -30,7 +30,12 @@ export default function Home() {
     <>
       <BannerHome />
       <div className="home">
-        <BasicSliderItems title="Últimos artistas" data={artists} />
+        <BasicSliderItems
+          title="Últimos artistas"
+          data={artists}
+          folderImage="artists"
+          urlName="artist"
+        />
         <h2>Más....</h2>
       </div>
     </>

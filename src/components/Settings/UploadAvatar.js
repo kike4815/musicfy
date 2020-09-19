@@ -11,6 +11,7 @@ export default function UploadAvatar(props) {
   const { user, setReloadApp } = props;
   const [avatarURL, setAvatarURL] = useState(user.photoURL);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
     setAvatarURL(URL.createObjectURL(file));

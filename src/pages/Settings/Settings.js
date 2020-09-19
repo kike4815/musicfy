@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import UploadAvatar from "../../components/Settings/UploadAvatar";
 import UserName from "../../components/Settings/UserName";
 import BasicModal from "../../components/Modal/BasicModal";
