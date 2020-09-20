@@ -19,4 +19,12 @@
       padding: 0;
     }
   }
+  .content {
+    overflow-y: scroll;
+    height: calc(100vh - 105px);
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }

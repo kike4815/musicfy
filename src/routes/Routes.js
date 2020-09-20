@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import Settings from "../pages/Settings";
 import Artist from "../pages/Artist/Artist";
 import Artists from "../pages/Artists/Artists";
+import Albums from "../pages/Albums";
 
 export default function Routes(props) {
   const { user, setReloadApp } = props;
@@ -22,6 +23,9 @@ export default function Routes(props) {
       </Route>
       <Route path="/artist/:id" exact>
         <Artist />
+      </Route>
+      <Route path="/albums" exact>
+        <Albums />
       </Route>
     </Switch>
   );
