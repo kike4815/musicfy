@@ -6,4 +6,47 @@
     border-bottom: 1px solid $border-grey-light;
     padding-bottom: 10px;
   }
+  &__list {
+    .slick-prev {
+      left: -35px;
+    }
+    .slick-next {
+      right: -35px;
+    }
+    &-song {
+      padding: 20px;
+
+      .avatar {
+        height: 160px;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+          cursor: pointer;
+          i {
+            opacity: 1;
+          }
+        }
+        i {
+          width: 100%;
+          opacity: 0;
+          transition: opacity 0.25s ease-in-out;
+
+          &::before {
+            font-size: 50px;
+            color: $font-light;
+          }
+        }
+      }
+      h3 {
+        color: $font-grey;
+        margin-top: 10px !important;
+        font-size: 16px;
+      }
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import { Grid, Progress, Image, Input, Icon } from "semantic-ui-react";
 import "./Player.scss";
@@ -10,6 +10,12 @@ export default function Player(props) {
   const [totalSeconds, setTotalSeconds] = useState(0);
   const [playing, seTplaying] = useState(false);
   const [volume, setVolume] = useState(0.3);
+
+  useEffect(() => {
+    if (songData?.url) {
+      onStart();
+    }
+  }, [songData]);
 
   const onStart = () => {
     seTplaying(true);

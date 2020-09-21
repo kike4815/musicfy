@@ -3,7 +3,8 @@ import { Grid } from "semantic-ui-react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Routes from "../../routes/Routes";
 import MenuLeft from "../../components/MenuLeft/MenuLeft";
-
+import firebase from "../../utils/firebase";
+import "firebase/storage";
 import TopBar from "../../components/TopBar";
 import Player from "../../components/Player/Player";
 
@@ -14,7 +15,13 @@ export default function LoggedLayout(props) {
   const [songData, setSongData] = useState(null);
 
   const playerSong = (albumImage, songName, songUrl) => {
-    // setSongData({url:songUrl,image:albumImage,name:songName})
+    firebase
+      .storage()
+      .ref(`song/${songUrl}`)
+      .getDownloadURL()
+      .then((url) => {
+        setSongData({ url: url, image: albumImage, name: songName });
+      });
   };
 
   return (
@@ -29,7 +36,11 @@ export default function LoggedLayout(props) {
           </Grid.Column>
           <Grid.Column className="content" width={13}>
             <TopBar user={user} />
-            <Routes user={user} setReloadApp={setReloadApp} />
+            <Routes
+              user={user}
+              setReloadApp={setReloadApp}
+              playerSong={playerSong}
+            />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
