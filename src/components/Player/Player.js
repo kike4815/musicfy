@@ -5,12 +5,6 @@ import "./Player.scss";
 
 export default function Player(props) {
   const { songData } = props;
-  //   const songData = {
-  //     image:
-  //       "https://firebasestorage.googleapis.com/v0/b/musicfy-e8e61.appspot.com/o/album%2F259b7153-5085-40ef-b363-7447c92ec72a?alt=media&token=76ae5c54-dd98-466d-b9fa-369e52310463",
-  //     name: "conspiracy of one",
-  //     url: "",
-  //   };
 
   const [playedSeconds, setPlayedSeconds] = useState(0);
   const [totalSeconds, setTotalSeconds] = useState(0);

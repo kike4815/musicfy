@@ -4,14 +4,14 @@ import firebase from "../../utils/firebase";
 import "firebase/firestore";
 import { map } from "lodash";
 import BasicSliderItems from "../../components/Sliders/BasicSliderItems/BasicSliderItems";
-
+import SongsSlider from "../../components/Sliders/SongsSlider";
 import "./Home.scss";
 
 const db = firebase.firestore(firebase);
-
 export default function Home() {
   const [artists, setArtists] = useState([]);
   const [albums, setAlbums] = useState([]);
+  const [songs, setSongs] = useState([]);
 
   useEffect(() => {
     db.collection("artists")
@@ -41,6 +41,21 @@ export default function Home() {
       });
   }, []);
 
+  useEffect(() => {
+    db.collection("songs")
+      .limit(10)
+      .get()
+      .then((response) => {
+        const arraySongs = [];
+        map(response?.docs, (song) => {
+          const data = song.data();
+          data.id = song.id;
+          arraySongs.push(data);
+        });
+        setSongs(arraySongs);
+      });
+  }, []);
+
   return (
     <>
       <BannerHome />
@@ -57,6 +72,7 @@ export default function Home() {
           folderImage="album"
           urlName="album"
         />
+        <SongsSlider title="Últimas canciones" data={songs} />
       </div>
     </>
   );
