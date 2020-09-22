@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { map } from "lodash";
+import { map, size } from "lodash";
 import Slider from "react-slick";
 import "./BasicSliderItems.scss";
 import { Link } from "react-router-dom";
@@ -17,6 +17,9 @@ export default function BasicSliderItems(props) {
     centerMode: true,
     className: "basic-slider-items__list",
   };
+  if (size(data) < 5) {
+    return null;
+  }
 
   return (
     <div className="basic-slider-items">
